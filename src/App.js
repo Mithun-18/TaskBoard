@@ -1,23 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import AddTask from "./component/addTask";
+import NewTaskBoard from "./component/newTaskBoard";
+import TaskCard from "./component/taskCard";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="beforeTaskCard" title="Todo">
+        <TaskCard
+          heading={"Heading"}
+          description={"description"}
+          borderColor={"3px solid cornflowerblue"}
+        />
+        <TaskCard
+          heading={"Heading"}
+          description={"description"}
+          borderColor={"3px solid cornflowerblue"}
+        />
+        <TaskCard
+          heading={"Heading"}
+          description={"description"}
+          borderColor={"3px solid cornflowerblue"}
+        />
+      </div>
+      <div className="beforeTaskCard" title="Doing">
+        <TaskCard
+          heading={"Heading"}
+          description={"description"}
+          borderColor={"3px solid cornflowerblue"}
+        />
+        <TaskCard
+          heading={"Heading"}
+          description={"description"}
+          borderColor={"3px solid cornflowerblue"}
+        />
+        <TaskCard
+          heading={"Heading"}
+          description={"description"}
+          borderColor={"3px solid cornflowerblue"}
+        />
+      </div>
+      <AddTask />
+      <div>
+        <NewTaskBoard />
+      </div>
     </div>
   );
 }
