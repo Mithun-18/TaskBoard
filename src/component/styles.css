@@ -28,11 +28,13 @@ button:hover {
 }
 
 .newTaskBoard {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
 }
+
+
 
 .taskCard {
     background-color: #fff;
@@ -58,10 +60,10 @@ button:hover {
 } */
 
 .textFieldcontainer {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 32px;
 }
 
 .taskCardRootContainer {
@@ -76,4 +78,11 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+
+.createTaskBoard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
 }

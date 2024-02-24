@@ -1,8 +1,8 @@
 import AddTask from "./component/addTask";
-import NewTaskBoard from "./component/newTaskBoard";
 import TaskCard from "./component/taskCard";
 import { todoStates } from "./constants";
 import TaskCardContainer from "./taskCardContainer";
+import CreateBoardScreen from "./screens/create_board_screen";
 
 function App() {
   return (
@@ -52,7 +52,7 @@ function App() {
           gap: "24px",
         }}
       >
-        <TaskCardContainer todoState={todoStates[0]} >
+        <TaskCardContainer todoState={todoStates[0]}>
           <TaskCard
             heading={"Heading"}
             description={"description"}
@@ -104,11 +104,7 @@ function App() {
           />
         </TaskCardContainer>
       </div>
-      <TaskCard
-        heading={"Heading"}
-        description={"description"}
-        borderColor={"3px solid cornflowerblue"}
-      />
+      <CreateBoardScreen />
     </div>
   );
 }
