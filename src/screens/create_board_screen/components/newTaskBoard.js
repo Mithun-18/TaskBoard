@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import Button from "../../../component/button";
-import TextFeild from "../../../component/textFeild";
+import Button from "../../../component/core/button";
+import TextFeild from "../../../component/core/textFeild";
 
 export default function NewTaskBoard() {
   const boardNameRef = useRef(0);

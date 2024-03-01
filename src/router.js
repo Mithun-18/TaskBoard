@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NewTaskBoard from "./screens/create_board_screen/components/newTaskBoard";
 import CreateBoardScreen from "./screens/create_board_screen";
-import {CustomModal} from './component/custom_modal';
+import {CustomModal} from './component/core/custom_modal';
+import AddTask from "./component/addTask";
 
 export default () => {
   return (
@@ -10,7 +11,6 @@ export default () => {
         <Routes>
           <Route path="/"  element={<h1>hshh</h1>}/>
           <Route path="/create-board"  element={<CreateBoardScreen/>}/>
-          <Route path="/temp-modal"  element={<CustomModal isOpen={true}/>}/>
         </Routes>
       </BrowserRouter>
     </>

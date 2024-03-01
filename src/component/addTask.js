@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import TextFeild from "./textFeild";
-import Button from "./button";
+import TextFeild from "./core/textFeild";
+import Button from "./core/button";
 
 export default function AddTask() {
   const taskNameRef = useRef(0);
