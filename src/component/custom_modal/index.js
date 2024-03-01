@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function CustomModal({ isOpen = false, children }) {
+export  function CustomModal({ isOpen = false, children }) {
   let [classNames, setClassNames] = useState(["custom-modal"]);
 
   useEffect(() => {
@@ -14,6 +14,6 @@ export default function CustomModal({ isOpen = false, children }) {
 
   
   return <div className={classNames.join(' ')}>
-    
+    dd
   </div>;
 }
