@@ -86,3 +86,10 @@ button:hover {
     align-items: center;
     gap: 48px;
 }
+
+.addTaskCardModal{
+    width: 600px;
+    position: absolute;
+}
+
+/* Custom modal styels */
