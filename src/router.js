@@ -7,16 +7,16 @@ import LoginScreen from "./screens/login_screen";
 import EmptyState from "./component/common/emptyState";
 import Loader from "./component/core/loader";
 import SelectBoard from "./component/common/selectBoard";
+import TaskCard from "./component/common/taskCard";
+import TaskCardContainer from "./taskCardContainer";
+import TaskBoard from "./screens/task_board_screen";
 
 export default () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<SelectBoard boardNames={["abc", "xyz", "lmn"]} />}
-          />
+          <Route path="/" element={<TaskBoard/>} />
           <Route path="/create-board" element={<CreateBoardScreen />} />
           <Route path="/login" element={<LoginScreen />} />
         </Routes>

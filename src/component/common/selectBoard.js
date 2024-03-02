@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function SelectBoard({boardNames=['']}) {
+export default function SelectBoard({boardNames=[''],className}) {
   return (
-    <div className="custom-select">
-      <select name="boards">
+    <>
+      <select name="boards" className={className}>
         {boardNames.map((boardName)=>(<option value={boardName}>{boardName}</option>))}
       </select>
-    </div>
+    </>
   );
 }
