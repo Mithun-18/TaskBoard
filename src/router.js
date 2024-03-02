@@ -5,13 +5,14 @@ import {CustomModal} from './component/core/custom_modal';
 import AddTask from "./component/common/addTask";
 import LoginScreen from "./screens/login_screen";
 import EmptyState from "./component/common/emptyState";
+import Loader from "./component/core/loader";
 
 export default () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/"  element={<EmptyState/>}/>
+          <Route path="/"  element={<Loader/>}/>
           <Route path="/create-board"  element={<CreateBoardScreen/>}/>
           <Route path="/login" element={<LoginScreen/>}/>
         </Routes>
