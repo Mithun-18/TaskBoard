@@ -1,3 +1,18 @@
+/* Headings */
+.heading {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.heading-main {
+    text-align: center;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+/*  */
+
+
 .button {
     background-color: #3f51b5;
     border-radius: 40px;
@@ -43,7 +58,7 @@
 
 /*                    */
 
-
+/* Task Card */
 .taskCard {
     background-color: #fff;
     border: 2px solid #fff;
@@ -57,13 +72,10 @@
     font-weight: 700;
 }
 
-
-
-.textFieldcontainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 32px;
+.horizontal-line {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.12);
+    margin: 12px 0px;
 }
 
 .taskCardRootContainer {
@@ -78,6 +90,15 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+
+/*  */
+
+.textFieldcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
 }
 
 /* for create-task-board and rootLoginScreen */
@@ -168,6 +189,14 @@
     align-self: flex-end;
 }
 
+/* empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    padding: 0px 24px;
+}
 
 /* loader */
 
@@ -195,14 +224,11 @@
 /* Select Board */
 
 select {
-    /* width: 100%; */
-    /* font-size: 1.2rem;
-    padding: 10px 30px 10px 10px; */
-    /* border: none; */
-    box-shadow: 0px 0px 10px silver;
-    /* background-color: #454857; */
     color: black;
     outline: none;
+    width: 200px;
+    border-radius: 12px;
+    border: 1px solid #c5c0c0 !important;
 }
 
 /* Task Board */
@@ -224,12 +250,26 @@ select {
 
 .task-board-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 24px;
+}
+
+.task-board-button-right {
+    display: flex;
     justify-content: flex-end;
     gap: 24px;
     padding: 24px;
+    min-height: 48px;
+}
+
+.task-board-button-left {
+    font-weight: 600;
+    font-size: 20px;
 }
 
 .task-board-button:hover {
     background-color: rgba(63, 81, 181, 0.04);
 }
+
 /* ************** */

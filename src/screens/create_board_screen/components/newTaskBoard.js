@@ -7,13 +7,10 @@ export default function NewTaskBoard() {
   const yourNameRef = useRef(0);
   return (
     <div className="newTaskBoard">
-      <span style={{ fontSize: "32px", fontWeight: "400"}}>
-        Create New Task Board
-      </span>
-        <TextFeild placeHolder={"Board Name"} inRef={boardNameRef} />
-        <TextFeild placeHolder={"Your Name"} inRef={yourNameRef} />
-        <Button bName={"Create"} />
-
+      <span className="heading">Create New Task Board</span>
+      <TextFeild placeHolder={"Board Name"} inRef={boardNameRef} />
+      <TextFeild placeHolder={"Your Name"} inRef={yourNameRef} />
+      <Button bName={"Create"} />
     </div>
   );
 }

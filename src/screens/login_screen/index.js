@@ -7,13 +7,18 @@ export default function LoginScreen() {
   const passwordRef = useRef(0);
 
   return (
-    <div class="screen-container">
-      <div class="rootLoginScreen">
+    <div className="screen-container">
+      <div className="rootLoginScreen">
         <div style={{ height: 600, width: 600 }}>
-          <img height={"100%"} width={"100%"} src="login_image.jpg" alt="login_image"/>
+          <img
+            height={"100%"}
+            width={"100%"}
+            src="login_image.jpg"
+            alt="login_image"
+          />
         </div>
         <div className="loginScreen">
-          <span style={{ fontSize: "32px", fontWeight: "400" }}>Login</span>
+          <span className="heading">Login</span>
           <TextFeild placeHolder={"User Name"} inRef={userNameRef} />
           <TextFeild
             placeHolder={"Password"}

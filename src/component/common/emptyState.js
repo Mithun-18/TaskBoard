@@ -5,17 +5,14 @@ export default function EmptyState() {
   return (
     <div className="screen-container">
       <div style={{ height: 320, width: 440 }}>
-        <img height={"100%"} width={"100%"} src="emptyScreen.jpg" alt="empty screen"/>
+        <img
+          height={"100%"}
+          width={"100%"}
+          src="emptyScreen.jpg"
+          alt="empty screen"
+        />
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "24px",
-          alignItems: "center",
-          padding: "0px 24px",
-        }}
-      >
+      <div className="empty-state">
         <span>No boards found! Please create one.</span>
         <div style={{ width: "180px" }}>
           <Button bName={"Create Board"} />

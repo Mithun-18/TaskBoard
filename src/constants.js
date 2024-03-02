@@ -2,16 +2,16 @@ export const todoStates = [
   {
     id: "todo",
     title: "Todo",
-    color: "red",
+    color: "3px solid red",
   },
   {
     id: "doing",
     title: "Doing",
-    color: "blue",
+    color: "3px solid cornflowerblue",
   },
   {
     id: "done",
     title: "Done",
-    color: "green",
+    color: "3px solid limegreen",
   },
 ];

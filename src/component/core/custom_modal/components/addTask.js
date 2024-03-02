@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import TextFeild from "../core/textFeild";
-import Button from "../core/button";
+import TextFeild from "../../textFeild";
+import Button from "../../button";
 
 export default function AddTask() {
   const taskNameRef = useRef(0);
@@ -9,7 +9,7 @@ export default function AddTask() {
 
   return (
     <div className="newTaskBoard addTaskCardModal">
-      <span>Add Task</span>
+      <span className="heading">Add Task</span>
       <TextFeild placeHolder={"Task Name"} inRef={taskNameRef} />
       <TextFeild placeHolder={"Description"} inRef={descriptionNameRef} />
       <TextFeild placeHolder={"Your Name"} inRef={yourNameRef2} />

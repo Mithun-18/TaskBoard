@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import AddTask from "../../common/addTask";
 import { AiOutlineClose } from "react-icons/ai";
 
-export function CustomModal({ isOpen = false, children }) {
+export function CustomModal({ isOpen = true, children }) {
   let [classNames, setClassNames] = useState(["custom-modal"]);
 
   useEffect(() => {

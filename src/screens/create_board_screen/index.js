@@ -1,11 +1,9 @@
 import NewTaskBoard from "./components/newTaskBoard";
 
-const rootStyle = { textAlign: "center", fontWeight: "500", fontSize: "40px" };
-
 export default function CreateBoardScreen() {
   return (
     <div className="screen-container">
-      <div style={rootStyle}>
+      <div className="heading-main">
         <div style={{ marginBottom: 32 }}>
           <span>Task Board App</span>
         </div>
