@@ -5,7 +5,7 @@ export default function EmptyState() {
   return (
     <div className="screen-container">
       <div style={{ height: 320, width: 440 }}>
-        <img height={"100%"} width={"100%"} src="emptyScreen.jpg" />
+        <img height={"100%"} width={"100%"} src="emptyScreen.jpg" alt="empty screen"/>
       </div>
       <div
         style={{

@@ -10,7 +10,7 @@ export default function LoginScreen() {
     <div class="screen-container">
       <div class="rootLoginScreen">
         <div style={{ height: 600, width: 600 }}>
-          <img height={"100%"} width={"100%"} src="login_image.jpg" />
+          <img height={"100%"} width={"100%"} src="login_image.jpg" alt="login_image"/>
         </div>
         <div className="loginScreen">
           <span style={{ fontSize: "32px", fontWeight: "400" }}>Login</span>
