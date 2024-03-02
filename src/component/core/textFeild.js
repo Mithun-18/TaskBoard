@@ -1,5 +1,5 @@
 
-export default function TextFeild({placeHolder,inRef}){
+export default function TextFeild({placeHolder,inRef,type='text'}){
 
-    return <input type={'text'} placeHolder={placeHolder +" *"} className={'inputField'} ref={inRef}/>
+    return <input type={type} placeHolder={placeHolder +" *"} className={'inputField'} ref={inRef}/>
 }

@@ -27,13 +27,18 @@
     border-color: black;
 }
 
-.newTaskBoard {
+/* For create task board and login screen */
+
+.newTaskBoard,.loginScreen{
     display: flex;
     flex-direction: column;
     gap: 32px;
-
+    text-align: center;
 }
-
+.loginScreen{
+    width: 400px;
+}
+/*                    */
 
 
 .taskCard {
@@ -79,18 +84,16 @@
     flex-direction: column;
     gap: 24px;
 }
-
-.createTaskBoard {
+/* for create-task-board and rootLoginScreen */
+.createTaskBoard,.rootLoginScreen {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 48px;
 }
 
-/* .addTaskCardModal {
-    width: 600px;
-    position: absolute;
-} */
+/*  */
+
 
 .screen-container{
     height: 100vh;
