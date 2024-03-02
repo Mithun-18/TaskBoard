@@ -4,7 +4,7 @@ import TaskCard from "../../component/common/taskCard";
 import { todoStates } from "../../constants";
 import SelectBoard from "../../component/common/selectBoard";
 
-export default function TaskBoard() {
+export default function TaskBoardScreen() {
   return (
     <div>
       <div className="task-board-header">

@@ -9,14 +9,14 @@ import Loader from "./component/core/loader";
 import SelectBoard from "./component/common/selectBoard";
 import TaskCard from "./component/common/taskCard";
 import TaskCardContainer from "./taskCardContainer";
-import TaskBoard from "./screens/task_board_screen";
+import TaskBoardScreen from "./screens/task_board_screen";
 
 export default () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<TaskBoard/>} />
+          <Route path="/" element={<TaskBoardScreen/>} />
           <Route path="/create-board" element={<CreateBoardScreen />} />
           <Route path="/login" element={<LoginScreen />} />
         </Routes>
