@@ -1,10 +1,21 @@
-import React from "react";
-import TaskCardContainer from "./components/taskCardContainer";
-import TaskCard from "./components/taskCard";
-import { todoStates } from "../../constants";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import SelectBoard from "../../component/common/selectBoard";
+import { todoStates } from "../../constants";
+import useAuth from "../../providers/auth_provider";
+import TaskCard from "./components/taskCard";
+import TaskCardContainer from "./components/taskCardContainer";
 
 export default function ManageTasksScreen() {
+  const { isLoggedIn, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && !isLoggedIn()) {
+      navigate("login");
+    }
+  }, [loading]);
+
   return (
     <div>
       <div className="task-board-header">

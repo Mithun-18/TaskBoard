@@ -1,8 +1,8 @@
 import axios from "axios";
-import { BACKEND_ENDPOINT } from "../../config";
+import { BACKEND_API_ENDPOINT } from "../../config";
 
 const http = axios.create({
-  baseURL: BACKEND_ENDPOINT,
+  baseURL: BACKEND_API_ENDPOINT,
 });
 
 // Request interceptor

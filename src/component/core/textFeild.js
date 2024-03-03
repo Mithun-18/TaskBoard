@@ -1,10 +1,10 @@
-export default function TextFeild({ placeHolder, inRef, type = "text" }) {
+export default function TextFeild({ placeHolder, inputRef, type = "text" }) {
   return (
     <input
       type={type}
       placeholder={placeHolder + " *"}
       className={"inputField"}
-      ref={inRef}
+      ref={inputRef}
     />
   );
 }

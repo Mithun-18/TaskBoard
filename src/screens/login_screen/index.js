@@ -1,25 +1,57 @@
-import React, { useEffect, useRef } from "react";
-import TextFeild from "../../component/core/textFeild";
+import Cookies from "js-cookie";
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../component/core/button";
-import axios from "axios";
-import { BACKEND_ENDPOINT } from "../../config";
-import { TEST_ENDPOINT } from "../../services/constants";
+import TextFeild from "../../component/core/textFeild";
+import { USER_ID_COOKIE_KEY, USER_NAME_COOKIE_KEY } from "../../constants";
+import useAuth from "../../providers/auth_provider";
+import { USER_LOGIN_ENDPOINT } from "../../services/constants";
 import http from "../../services/http";
 
 export default function LoginScreen() {
   const userNameRef = useRef(0);
   const passwordRef = useRef(0);
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
 
-  useEffect(() => {
+  function onLogin() {
+    let userName = userNameRef.current.value;
+    let password = passwordRef.current.value;
+
+    if (!userName) {
+      userNameRef.current.focus();
+      return;
+    }
+    if (!password) {
+      passwordRef.current.focus();
+      return;
+    }
+
+    password = btoa(password);
+
     http
-      .get('/api/v1/users/login')
-      .then((res) => {
-        console.log("heoo ", res);
+      .post(USER_LOGIN_ENDPOINT, {
+        userName,
+        password,
       })
-      .catch((err) => {
-        console.log("catc", err);
+      .then((result) => {
+        const { data } = result;
+        let userId = data?.data?.userid || "";
+        let userName = data?.data?.username || "";
+
+        Cookies.set(USER_ID_COOKIE_KEY, userId);
+        Cookies.set(USER_NAME_COOKIE_KEY, userName);
+        setUser({
+          userId,
+          userName,
+        });
+        alert("Logged in successfully!");
+        navigate("/");
+      })
+      .catch((error) => {
+        alert(error?.response?.data?.data || "Something went wrong!");
       });
-  }, []);
+  }
 
   return (
     <div className="screen-container">
@@ -34,13 +66,13 @@ export default function LoginScreen() {
         </div>
         <div className="loginScreen">
           <span className="heading">Login</span>
-          <TextFeild placeHolder={"User Name"} inRef={userNameRef} />
+          <TextFeild placeHolder={"User Name"} inputRef={userNameRef} />
           <TextFeild
             placeHolder={"Password"}
-            inRef={passwordRef}
+            inputRef={passwordRef}
             type={"password"}
           />
-          <Button bName={"Login"} />
+          <Button bName={"Login"} onClick={onLogin} />
         </div>
       </div>
     </div>

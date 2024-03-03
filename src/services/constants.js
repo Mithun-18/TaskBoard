@@ -1,1 +1,1 @@
-export const TEST_ENDPOINT = '/';
+export const USER_LOGIN_ENDPOINT = '/users/login/';

@@ -9,8 +9,8 @@ export default () => {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/manage-task"
-            element={<ManageTasksScreen></ManageTasksScreen>}
+            path="/"
+            element={<ManageTasksScreen/>}
           />
           <Route path="/create-board" element={<CreateBoardScreen />} />
           <Route path="/login" element={<LoginScreen />} />

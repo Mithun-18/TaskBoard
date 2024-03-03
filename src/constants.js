@@ -15,3 +15,6 @@ export const todoStates = [
     color: "3px solid limegreen",
   },
 ];
+
+export const USER_ID_COOKIE_KEY = 'user_id';
+export const USER_NAME_COOKIE_KEY = 'user_name';
