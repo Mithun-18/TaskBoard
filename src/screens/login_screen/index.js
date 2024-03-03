@@ -1,10 +1,25 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import TextFeild from "../../component/core/textFeild";
 import Button from "../../component/core/button";
+import axios from "axios";
+import { BACKEND_ENDPOINT } from "../../config";
+import { TEST_ENDPOINT } from "../../services/constants";
+import http from "../../services/http";
 
 export default function LoginScreen() {
   const userNameRef = useRef(0);
   const passwordRef = useRef(0);
+
+  useEffect(() => {
+    http
+      .get('/api/v1/users/login')
+      .then((res) => {
+        console.log("heoo ", res);
+      })
+      .catch((err) => {
+        console.log("catc", err);
+      });
+  }, []);
 
   return (
     <div className="screen-container">
