@@ -5,14 +5,19 @@ import { todoStates } from "../../constants";
 import useAuth from "../../providers/auth_provider";
 import TaskCard from "./components/taskCard";
 import TaskCardContainer from "./components/taskCardContainer";
+import http from "../../services/http";
 
 export default function ManageTasksScreen() {
   const { isLoggedIn, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !isLoggedIn()) {
-      navigate("login");
+    if (!loading) {
+      if (!isLoggedIn()) {
+        navigate("login");
+      } else {
+        // TODO:  fetch tasks api
+      }
     }
   }, [loading]);
 
