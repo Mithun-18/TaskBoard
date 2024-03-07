@@ -12,7 +12,6 @@ export function AuthProvider({ children }) {
     checkLoogedIn();
   }, []);
 
-
   async function checkLoogedIn() {
     setLoading(true);
     let userId = Cookies.get(USER_ID_COOKIE_KEY);
@@ -33,7 +32,7 @@ export function AuthProvider({ children }) {
       Cookies.remove(USER_NAME_COOKIE_KEY);
       setUser(null);
     }
-    
+
     setLoading(false);
   }
 
