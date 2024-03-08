@@ -8,6 +8,8 @@ import TaskCardContainer from "./components/taskCardContainer";
 import http from "../../services/http";
 import useTaskManager from "../../providers/task_manager_provider";
 import Loader from "../../component/core/loader";
+import Select from "../../component/common/selectBoard";
+import EmptyState from "../../component/common/emptyState";
 
 export default function ManageTasksScreen() {
   const { isLoggedIn, loading: authLoading } = useAuth();
@@ -31,23 +33,29 @@ export default function ManageTasksScreen() {
   }, [authLoading]);
 
   useEffect(() => {
-    console.log("taskboards ", taskManagerLoading, authLoading);
+    console.log(
+      "taskboards ",
+      taskManagerLoading,
+      authLoading,
+      taskBoards,
+      taskBoards.length
+    );
   }, [authLoading, taskManagerLoading]);
 
   function renderContent() {
+    const boardOptions = taskBoards.map((ele) => {
+      return { name: ele.name, value: ele.table_id };
+    });
     return (
       <>
         <div className="task-board-header">
           <div className="task-board-button-left">
-            <span>Board name</span>
+            <span>{taskBoards[0]?.name}</span>
           </div>
           <div className="task-board-button-right">
             <button className="task-board-button">NEW BOARD</button>
             <button className="task-board-button">ADD TASK</button>
-            <SelectBoard
-              className={"task-board-button "}
-              boardNames={["abc", "xyz", "lmn", "pqrs"]}
-            />
+            <Select className={"task-board-button "} options={boardOptions} />
           </div>
         </div>
         <div className="board-container">
@@ -91,9 +99,16 @@ export default function ManageTasksScreen() {
       </>
     );
   }
+
   return (
     <div>
-      {authLoading || taskManagerLoading ? <Loader /> : renderContent()}
+      {authLoading || taskManagerLoading ? (
+        <Loader />
+      ) : taskBoards.length ? (
+        renderContent()
+      ) : (
+        <EmptyState />
+      )}
     </div>
   );
 }

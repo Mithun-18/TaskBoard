@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function SelectBoard({ boardNames = [""], className }) {
+export default function Select({ options, className }) {
   return (
     <>
-      <select name="boards" className={className}>
-        {boardNames.map((boardName) => (
-          <option value={boardName} key={boardName}>
-            {boardName}
+      <select className={className}>
+        {options.map((option) => (
+          <option value={option?.value} key={option?.value}>
+            {option?.name}
           </option>
         ))}
       </select>
