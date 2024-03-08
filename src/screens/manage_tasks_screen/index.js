@@ -1,26 +1,27 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import EmptyState from "../../component/common/emptyState";
+import Loader from "../../component/core/loader";
 import { todoStates } from "../../constants";
 import useAuth from "../../providers/auth_provider";
+import useTaskManager from "../../providers/task_manager_provider";
+import TaskBoardHeader from "./components/taskBoardHeader";
 import TaskCard from "./components/taskCard";
 import TaskCardContainer from "./components/taskCardContainer";
-import useTaskManager from "../../providers/task_manager_provider";
-import Loader from "../../component/core/loader";
-import EmptyState from "../../component/common/emptyState";
-import TaskBoardHeader from "./components/taskBoardHeader";
+import TodoTasks from "./components/todoTasks";
+import DoingTasks from "./components/doingTasks";
+import DoneTasks from "./components/doneTasks";
 
 export default function ManageTasksScreen() {
   const { isLoggedIn, loading: authLoading } = useAuth();
   const navigate = useNavigate();
-  const { loadBoards, taskManagerLoading, taskBoards, selectedBoardId } =
+  const { loadBoards, taskManagerLoading, taskBoards, selectedBoardId, tasks } =
     useTaskManager();
 
   useEffect(() => {
     if (!authLoading) {
       if (!isLoggedIn()) {
         navigate("login");
-      } else {
-        // TODO:  fetch tasks api
       }
     }
   }, [authLoading]);
@@ -39,42 +40,9 @@ export default function ManageTasksScreen() {
           <Loader />
         ) : (
           <div className="board-container">
-            <TaskCardContainer todoState={todoStates[0]}>
-              <TaskCard
-                heading={"heading"}
-                description={"description"}
-                borderColor={todoStates[0].color}
-              />
-              <TaskCard
-                heading={"heading"}
-                description={"description"}
-                borderColor={todoStates[0].color}
-              />
-            </TaskCardContainer>
-            <TaskCardContainer todoState={todoStates[1]}>
-              <TaskCard
-                heading={"heading"}
-                description={"description"}
-                borderColor={todoStates[1].color}
-              />
-              <TaskCard
-                heading={"heading"}
-                description={"description"}
-                borderColor={todoStates[1].color}
-              />
-              <TaskCard
-                heading={"heading"}
-                description={"description"}
-                borderColor={todoStates[1].color}
-              />
-            </TaskCardContainer>
-            <TaskCardContainer todoState={todoStates[2]}>
-              <TaskCard
-                heading={"heading"}
-                description={"description"}
-                borderColor={todoStates[2].color}
-              />
-            </TaskCardContainer>
+            <TodoTasks />
+            <DoingTasks />
+            <DoneTasks />
           </div>
         )}
       </>
