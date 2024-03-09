@@ -20,3 +20,9 @@ export const todoStates = [
 
 export const USER_ID_COOKIE_KEY = "user_id";
 export const USER_NAME_COOKIE_KEY = "user_name";
+
+export const HOME_ROUTE='/';
+export const CREATE_BOARD_ROUTE='/create-board';
+export const LOGIN_ROUTE='/login';
+
+

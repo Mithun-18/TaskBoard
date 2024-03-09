@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EmptyState from "../../component/common/emptyState";
 import Loader from "../../component/core/loader";
-import { todoStates } from "../../constants";
+import { LOGIN_ROUTE, todoStates } from "../../constants";
 import useAuth from "../../providers/auth_provider";
 import useTaskManager from "../../providers/task_manager_provider";
 import TaskBoardHeader from "./components/taskBoardHeader";
@@ -15,13 +15,12 @@ import DoneTasks from "./components/doneTasks";
 export default function ManageTasksScreen() {
   const { isLoggedIn, loading: authLoading } = useAuth();
   const navigate = useNavigate();
-  const { loadBoards, taskManagerLoading, taskBoards, selectedBoardId, tasks } =
-    useTaskManager();
+  const { loadBoards, taskManagerLoading, taskBoards } = useTaskManager();
 
   useEffect(() => {
     if (!authLoading) {
       if (!isLoggedIn()) {
-        navigate("login");
+        navigate(LOGIN_ROUTE);
       }
     }
   }, [authLoading]);

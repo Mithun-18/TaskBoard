@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { DOING_TASK_ID, DONE_TASK_ID, TODO_TASK_ID } from "../config.js";
 import {
   USER_BOARDS_ENDPOINT,
+  USER_CREATEBOARD_ENDPOINT,
   USER_TASKS_ENDPOINT,
 } from "../services/constants.js";
 import http from "../services/http";
@@ -20,12 +21,29 @@ export function TaskManagerProvider({ children }) {
       setTimeout(async () => {
         let res = await http.get(USER_BOARDS_ENDPOINT);
         setTaskBoards([...res.data.data]);
-        setSelectedBoardId(res?.data?.data?.[0]?.table_id || "");
+        if (!selectedBoardId) {
+          setSelectedBoardId(res?.data?.data?.[0]?.table_id || "");
+        }
         setLoading(false);
       }, 3000);
     } catch (error) {
       setLoading(false);
       setTaskBoards([]);
+    }
+  }
+
+  async function createBoard(boardName, onSuccess) {
+    try {
+      setLoading(true);
+      const res = await http.post(USER_CREATEBOARD_ENDPOINT, {
+        boardName,
+      });
+
+      setSelectedBoardId(res?.data?.data?.boardId || "");
+      setLoading(false);
+      onSuccess?.();
+    } catch (e) {
+      setLoading(false);
     }
   }
 
@@ -44,8 +62,8 @@ export function TaskManagerProvider({ children }) {
 
           setTasks({
             [TODO_TASK_ID]: todo,
-            [DOING_TASK_ID]:doing,
-            [DONE_TASK_ID]:done,
+            [DOING_TASK_ID]: doing,
+            [DONE_TASK_ID]: done,
           });
 
           setLoading(false);
@@ -57,8 +75,6 @@ export function TaskManagerProvider({ children }) {
     }
   }, [selectedBoardId]);
 
-
-
   return (
     <TaskManagerContext.Provider
       value={{
@@ -68,6 +84,7 @@ export function TaskManagerProvider({ children }) {
         selectedBoardId,
         setSelectedBoardId,
         tasks,
+        createBoard,
       }}
     >
       {children}

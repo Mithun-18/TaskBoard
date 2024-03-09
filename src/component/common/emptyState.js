@@ -1,7 +1,14 @@
 import React from "react";
 import Button from "../core/button";
+import {useNavigate } from "react-router-dom";
+import { CREATE_BOARD_ROUTE } from "../../constants";
 
 export default function EmptyState() {
+  const navigate=useNavigate();
+
+  function goToCreateBoard(){
+    navigate(CREATE_BOARD_ROUTE);
+  }
   return (
     <div className="screen-container">
       <div style={{ height: 320, width: 440 }}>
@@ -15,7 +22,7 @@ export default function EmptyState() {
       <div className="empty-state">
         <span>No boards found! Please create one.</span>
         <div style={{ width: "180px" }}>
-          <Button bName={"Create Board"} />
+          <Button bName={"Create Board"} onClick={goToCreateBoard} />
         </div>
       </div>
     </div>

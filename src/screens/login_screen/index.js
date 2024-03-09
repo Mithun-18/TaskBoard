@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../component/core/button";
 import TextFeild from "../../component/core/textFeild";
-import { USER_ID_COOKIE_KEY, USER_NAME_COOKIE_KEY } from "../../constants";
+import { HOME_ROUTE, USER_ID_COOKIE_KEY, USER_NAME_COOKIE_KEY } from "../../constants";
 import useAuth from "../../providers/auth_provider";
 import { USER_LOGIN_ENDPOINT } from "../../services/constants";
 import http from "../../services/http";
@@ -46,7 +46,7 @@ export default function LoginScreen() {
           userName,
         });
         alert("Logged in successfully!");
-        navigate("/");
+        navigate(HOME_ROUTE);
       })
       .catch((error) => {
         alert(error?.response?.data?.data || "Something went wrong!");
