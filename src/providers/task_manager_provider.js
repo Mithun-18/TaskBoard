@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { DOING_TASK_ID, DONE_TASK_ID, TODO_TASK_ID } from "../config.js";
 import {
+  USER_ADDTASK_ENDPOINT,
   USER_BOARDS_ENDPOINT,
   USER_CREATEBOARD_ENDPOINT,
   USER_TASKS_ENDPOINT,
@@ -14,6 +15,7 @@ export function TaskManagerProvider({ children }) {
   const [taskBoards, setTaskBoards] = useState([]);
   const [selectedBoardId, setSelectedBoardId] = useState("");
   const [tasks, setTasks] = useState({});
+  const [showAddTaskModal, setShowAddTaskModal] = useState(null);
 
   async function loadBoards() {
     try {
@@ -45,6 +47,34 @@ export function TaskManagerProvider({ children }) {
     } catch (e) {
       setLoading(false);
     }
+  }
+
+  async function addTask(data, onSuccess) {
+    data = { ...data, boardId: selectedBoardId };
+    try {
+      setLoading(true);
+      const res = await http.post(USER_ADDTASK_ENDPOINT, data);
+      if (res?.data?.data) {
+        const taskStatus = res?.data?.data?.status;
+        if (taskStatus == 1) {
+          updateTasks(TODO_TASK_ID, res?.data?.data);
+        } else if (taskStatus == 2) {
+          updateTasks(DOING_TASK_ID, res?.data?.data);
+        } else if (taskStatus == 3) {
+          updateTasks(DONE_TASK_ID, res?.data?.data);
+        }
+      }
+      setShowAddTaskModal(false);
+      onSuccess?.();
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  }
+
+  function updateTasks(status, data) {
+    tasks[status] = [data, ...tasks[status]];
+    setTasks({ ...tasks });
   }
 
   useEffect(() => {
@@ -85,6 +115,9 @@ export function TaskManagerProvider({ children }) {
         setSelectedBoardId,
         tasks,
         createBoard,
+        setShowAddTaskModal,
+        showAddTaskModal,
+        addTask,
       }}
     >
       {children}
