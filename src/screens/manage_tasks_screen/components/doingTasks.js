@@ -13,9 +13,11 @@ export default function DoingTasks() {
       {tasks[DOING_TASK_ID]?.map((ele, index) => (
         <TaskCard
           key={index}
+          taskId={ele.task_id}
           heading={ele?.title}
           description={ele?.desc_task}
           borderColor={doingConfig?.color}
+          taskStatus={DOING_TASK_ID}
         />
       ))}
     </TaskCardContainer>

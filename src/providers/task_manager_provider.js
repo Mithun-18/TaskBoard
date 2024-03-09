@@ -4,6 +4,7 @@ import {
   USER_ADDTASK_ENDPOINT,
   USER_BOARDS_ENDPOINT,
   USER_CREATEBOARD_ENDPOINT,
+  USER_DELETETASK_ENDPOINT,
   USER_TASKS_ENDPOINT,
 } from "../services/constants.js";
 import http from "../services/http";
@@ -105,6 +106,23 @@ export function TaskManagerProvider({ children }) {
     }
   }, [selectedBoardId]);
 
+  async function deleteTask(taskId, taskStatus) {
+    try {
+      setLoading(true);
+      await http.post(USER_DELETETASK_ENDPOINT, {
+        taskId,
+      });
+
+      tasks[taskStatus] = tasks[taskStatus].filter(
+        (ele) => ele.task_id != taskId
+      );
+      setTasks({ ...tasks });
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  }
+
   return (
     <TaskManagerContext.Provider
       value={{
@@ -118,6 +136,7 @@ export function TaskManagerProvider({ children }) {
         setShowAddTaskModal,
         showAddTaskModal,
         addTask,
+        deleteTask,
       }}
     >
       {children}

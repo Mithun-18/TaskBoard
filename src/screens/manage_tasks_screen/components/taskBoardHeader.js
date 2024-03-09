@@ -3,8 +3,10 @@ import Select from "../../../component/common/selectBoard.js";
 import useTaskManager from "../../../providers/task_manager_provider.js";
 import { CREATE_BOARD_ROUTE } from "../../../constants.js";
 import { TODO_TASK_ID } from "../../../config.js";
+import useAuth from "../../../providers/auth_provider.js";
 
 export default function TaskBoardHeader() {
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const {
     taskBoards,
@@ -47,6 +49,15 @@ export default function TaskBoardHeader() {
           onChange={onBoardChange}
           selectedValue={selectedBoardId}
         />
+        <button
+          className="task-board-button"
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
+        >
+          LOGOUT
+        </button>
       </div>
     </div>
   );

@@ -13,9 +13,11 @@ export default function TodoTasks() {
       {tasks[TODO_TASK_ID]?.map((ele, index) => (
         <TaskCard
           key={index}
+          taskId={ele.task_id}
           heading={ele?.title}
           description={ele?.desc_task}
           borderColor={todoConfig?.color}
+          taskStatus={TODO_TASK_ID}
         />
       ))}
     </TaskCardContainer>
