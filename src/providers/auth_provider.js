@@ -1,6 +1,8 @@
 import Cookies from "js-cookie";
 import { createContext, useContext, useEffect, useState } from "react";
 import { USER_ID_COOKIE_KEY, USER_NAME_COOKIE_KEY } from "../constants";
+import http from "../services/http";
+import { USER_LOGIN_ENDPOINT } from "../services/constants";
 
 const AuthContext = createContext();
 
@@ -36,6 +38,30 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }
 
+  function logIn(userName, password, onSuccess) {
+    http
+      .post(USER_LOGIN_ENDPOINT, {
+        userName,
+        password,
+      })
+      .then((result) => {
+        const { data } = result;
+        let userId = data?.data?.userid || "";
+        let userName = data?.data?.username || "";
+
+        Cookies.set(USER_ID_COOKIE_KEY, userId);
+        Cookies.set(USER_NAME_COOKIE_KEY, userName);
+        setUser({
+          userId,
+          userName,
+        });
+        onSuccess();
+      })
+      .catch((error) => {
+        alert(error?.response?.data?.data || "Something went wrong!");
+      });
+  }
+
   function logout(onSuccess) {
     Cookies.remove(USER_ID_COOKIE_KEY);
     Cookies.remove(USER_NAME_COOKIE_KEY);
@@ -48,7 +74,9 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, logout, loading, setUser }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, logout, loading, setUser, logIn }}
+    >
       {children}
     </AuthContext.Provider>
   );
