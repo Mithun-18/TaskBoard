@@ -36,10 +36,11 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }
 
-  function logout() {
+  function logout(onSuccess) {
     Cookies.remove(USER_ID_COOKIE_KEY);
     Cookies.remove(USER_NAME_COOKIE_KEY);
     setUser(null);
+    onSuccess?.();
   }
 
   function isLoggedIn() {

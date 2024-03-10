@@ -9,7 +9,7 @@ export default function DoingTasks() {
   const doingConfig = todoStates.find((state) => state.id == DOING_TASK_ID);
 
   return (
-    <TaskCardContainer config={doingConfig}>
+    <TaskCardContainer config={doingConfig} taskStatus={DOING_TASK_ID}>
       {tasks[DOING_TASK_ID]?.map((ele, index) => (
         <TaskCard
           key={index}

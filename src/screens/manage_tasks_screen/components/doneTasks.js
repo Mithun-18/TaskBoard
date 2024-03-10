@@ -9,7 +9,7 @@ export default function DoneTasks() {
   const doneConfig = todoStates.find((state) => state.id == DONE_TASK_ID);
 
   return (
-    <TaskCardContainer config={doneConfig}>
+    <TaskCardContainer config={doneConfig} taskStatus={DONE_TASK_ID}>
       {tasks[DONE_TASK_ID]?.map((ele, index) => (
         <TaskCard
           key={index}

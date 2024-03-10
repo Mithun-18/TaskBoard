@@ -115,10 +115,17 @@
 
 
 .screen-container {
-    height: 100vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.logOutContainer {
+    display: flex;
+    justify-content: flex-end;
+    height: 10vh;
+    padding-right: 32px;
 }
 
 /* Custom modal styels */
@@ -190,17 +197,17 @@
     align-self: flex-end;
 }
 
-.custom-modal-close:hover{
+.custom-modal-close:hover {
     background-color: red;
 }
 
-.customModalHeader{
+.customModalHeader {
     display: flex;
     justify-content: space-between;
     padding: 16px;
 }
 
-.textFeildContainer{
+.textFeildContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -295,3 +302,10 @@ select {
 }
 
 /* ************** */
+
+
+.displayFlexing {
+    display: flex;
+    align-items: self-end;
+    justify-content: space-between;
+}
