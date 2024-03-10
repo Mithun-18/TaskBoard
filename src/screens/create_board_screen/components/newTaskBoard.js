@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import Button from "../../../component/core/button";
 import TextFeild from "../../../component/core/textFeild";
-import http from "../../../services/http";
-import { USER_CREATEBOARD_ENDPOINT } from "../../../services/constants";
 import { useNavigate } from "react-router-dom";
 import useTaskManager from "../../../providers/task_manager_provider";
 import { HOME_ROUTE } from "../../../constants";

@@ -3,7 +3,7 @@ import { CustomModal } from "../../../component/core/custom_modal";
 import TextFeild from "../../../component/core/textFeild";
 import useTaskManager from "../../../providers/task_manager_provider";
 import Button from "../../../component/core/button";
-import { DOING_TASK_ID, DONE_TASK_ID, TODO_TASK_ID } from "../../../config";
+import { DOING_TASK_ID, DONE_TASK_ID } from "../../../config";
 import TaskStatusSelection from "./taskStatusSelection";
 
 export default function AddTaskModal() {
@@ -15,9 +15,9 @@ export default function AddTaskModal() {
     const taskName = taskNameRef.current.value;
     const decription = descrptionRef.current.value;
     let taskStatus = 1;
-    if (showAddTaskModal == DOING_TASK_ID) {
+    if (showAddTaskModal === DOING_TASK_ID) {
       taskStatus = 2;
-    } else if (showAddTaskModal == DONE_TASK_ID) {
+    } else if (showAddTaskModal === DONE_TASK_ID) {
       taskStatus = 3;
     }
     if (!taskName) {

@@ -20,9 +20,9 @@ export function AuthProvider({ children }) {
     let userName = Cookies.get(USER_NAME_COOKIE_KEY);
 
     if (
-      typeof userId == "string" &&
+      typeof userId === "string" &&
       userId != "" &&
-      typeof userName == "string" &&
+      typeof userName === "string" &&
       userName != ""
     ) {
       setUser({

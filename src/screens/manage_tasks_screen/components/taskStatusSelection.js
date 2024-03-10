@@ -19,7 +19,7 @@ export default function TaskStatusSelection({ seletedValue = "", onChange }) {
             type="radio"
             name="AddTask"
             value={TODO_TASK_ID}
-            checked={seletedValue == TODO_TASK_ID}
+            checked={seletedValue === TODO_TASK_ID}
             onChange={handleChange}
           />
           <label>TODO</label>
@@ -29,7 +29,7 @@ export default function TaskStatusSelection({ seletedValue = "", onChange }) {
             type="radio"
             name="AddTask"
             value={DOING_TASK_ID}
-            checked={seletedValue == DOING_TASK_ID}
+            checked={seletedValue === DOING_TASK_ID}
             onChange={handleChange}
           />
           <label>DOING</label>
@@ -39,7 +39,7 @@ export default function TaskStatusSelection({ seletedValue = "", onChange }) {
             type="radio"
             name="AddTask"
             value={DONE_TASK_ID}
-            checked={seletedValue == DONE_TASK_ID}
+            checked={seletedValue === DONE_TASK_ID}
             onChange={handleChange}
           />
           <label>DONE</label>

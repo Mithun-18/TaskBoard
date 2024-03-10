@@ -49,7 +49,7 @@ export default function ManageTasksScreen() {
 
   return (
     <div>
-      {(authLoading || taskManagerLoading) && taskBoards.length == 0 ? (
+      {(authLoading || taskManagerLoading) && taskBoards.length === 0 ? (
         <Loader />
       ) : (
         <>{taskBoards.length ? renderContent() : <EmptyState />}</>

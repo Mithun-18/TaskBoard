@@ -3,7 +3,6 @@ import Select from "../../../component/common/selectBoard.js";
 import useTaskManager from "../../../providers/task_manager_provider.js";
 import { CREATE_BOARD_ROUTE } from "../../../constants.js";
 import { TODO_TASK_ID } from "../../../config.js";
-import useAuth from "../../../providers/auth_provider.js";
 import LogOut from "../../../component/core/logout.js";
 
 export default function TaskBoardHeader() {
@@ -24,7 +23,7 @@ export default function TaskBoardHeader() {
   });
 
   const selectBoard = taskBoards.find((ele) => ele.table_id == selectedBoardId);
-
+  console.log(selectBoard, selectedBoardId, taskBoards);
   return (
     <div className="task-board-header">
       <div className="task-board-button-left">
@@ -49,7 +48,7 @@ export default function TaskBoardHeader() {
           onChange={onBoardChange}
           selectedValue={selectedBoardId}
         />
-        <LogOut/>
+        <LogOut />
       </div>
     </div>
   );

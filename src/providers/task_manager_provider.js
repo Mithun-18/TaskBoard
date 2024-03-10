@@ -57,11 +57,11 @@ export function TaskManagerProvider({ children }) {
       const res = await http.post(USER_ADDTASK_ENDPOINT, data);
       if (res?.data?.data) {
         const taskStatus = res?.data?.data?.status;
-        if (taskStatus == 1) {
+        if (taskStatus === 1) {
           updateTasks(TODO_TASK_ID, res?.data?.data);
-        } else if (taskStatus == 2) {
+        } else if (taskStatus === 2) {
           updateTasks(DOING_TASK_ID, res?.data?.data);
-        } else if (taskStatus == 3) {
+        } else if (taskStatus === 3) {
           updateTasks(DONE_TASK_ID, res?.data?.data);
         }
       }
@@ -87,9 +87,9 @@ export function TaskManagerProvider({ children }) {
             boardId: selectedBoardId,
           });
 
-          const todo = res.data.data.filter((ele) => ele.status == 1);
-          const doing = res.data.data.filter((ele) => ele.status == 2);
-          const done = res.data.data.filter((ele) => ele.status == 3);
+          const todo = res.data.data.filter((ele) => ele.status === 1);
+          const doing = res.data.data.filter((ele) => ele.status === 2);
+          const done = res.data.data.filter((ele) => ele.status === 3);
 
           setTasks({
             [TODO_TASK_ID]: todo,

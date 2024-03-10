@@ -6,7 +6,7 @@ import TaskCardContainer from "./taskCardContainer";
 
 export default function DoingTasks() {
   const { tasks } = useTaskManager();
-  const doingConfig = todoStates.find((state) => state.id == DOING_TASK_ID);
+  const doingConfig = todoStates.find((state) => state.id === DOING_TASK_ID);
 
   return (
     <TaskCardContainer config={doingConfig} taskStatus={DOING_TASK_ID}>
