@@ -5,7 +5,7 @@ import TaskCard from "./taskCard";
 import TaskCardContainer from "./taskCardContainer";
 
 export default function DoneTasks() {
-  const { tasks } = useTaskManager();
+  const { tasks, setShowEditTaskModal } = useTaskManager();
   const doneConfig = todoStates.find((state) => state.id === DONE_TASK_ID);
 
   return (
@@ -18,6 +18,9 @@ export default function DoneTasks() {
           description={ele?.desc_task}
           borderColor={doneConfig?.color}
           taskStatus={DONE_TASK_ID}
+          onEdit={() => {
+            setShowEditTaskModal({ ...ele, taskStatus: DONE_TASK_ID });
+          }}
         />
       ))}
     </TaskCardContainer>

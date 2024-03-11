@@ -1,4 +1,8 @@
-export default function TextFeild({ placeHolder, inputRef, type = "text" }) {
+export default function TextFeild({
+  placeHolder,
+  inputRef,
+  type = "text",
+}) {
   return (
     <input
       type={type}

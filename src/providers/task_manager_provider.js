@@ -5,6 +5,7 @@ import {
   USER_BOARDS_ENDPOINT,
   USER_CREATEBOARD_ENDPOINT,
   USER_DELETETASK_ENDPOINT,
+  USER_EDITTASK_ENDPOINT,
   USER_TASKS_ENDPOINT,
 } from "../services/constants.js";
 import http from "../services/http";
@@ -17,6 +18,7 @@ export function TaskManagerProvider({ children }) {
   const [selectedBoardId, setSelectedBoardId] = useState("");
   const [tasks, setTasks] = useState({});
   const [showAddTaskModal, setShowAddTaskModal] = useState(null);
+  const [showEditTaskModal, setShowEditTaskModal] = useState(null);
 
   async function loadBoards() {
     try {
@@ -50,7 +52,7 @@ export function TaskManagerProvider({ children }) {
     }
   }
 
-  async function addTask(data, onSuccess) {
+  async function addTask(data) {
     data = { ...data, boardId: selectedBoardId };
     try {
       setLoading(true);
@@ -66,10 +68,23 @@ export function TaskManagerProvider({ children }) {
         }
       }
       setShowAddTaskModal(false);
-      onSuccess?.();
       setLoading(false);
     } catch (error) {
       setLoading(false);
+    }
+  }
+
+  async function editTask(data) {
+    data = { ...data, boardId: selectedBoardId };
+    try {
+      setLoading(true);
+      await http.put(USER_EDITTASK_ENDPOINT, data);
+      loadCurrentBoardTasks();
+      setShowEditTaskModal(false);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setShowEditTaskModal(false);
     }
   }
 
@@ -78,31 +93,34 @@ export function TaskManagerProvider({ children }) {
     setTasks({ ...tasks });
   }
 
+  async function loadCurrentBoardTasks() {
+    try {
+      setLoading(true);
+
+      let res = await http.post(USER_TASKS_ENDPOINT, {
+        boardId: selectedBoardId,
+      });
+
+      const todo = res.data.data.filter((ele) => ele.status === 1);
+      const doing = res.data.data.filter((ele) => ele.status === 2);
+      const done = res.data.data.filter((ele) => ele.status === 3);
+
+      setTasks({
+        [TODO_TASK_ID]: todo,
+        [DOING_TASK_ID]: doing,
+        [DONE_TASK_ID]: done,
+      });
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setTasks({});
+    }
+  }
+
   useEffect(() => {
     if (selectedBoardId) {
-      try {
-        setLoading(true);
-        setTimeout(async () => {
-          let res = await http.post(USER_TASKS_ENDPOINT, {
-            boardId: selectedBoardId,
-          });
-
-          const todo = res.data.data.filter((ele) => ele.status === 1);
-          const doing = res.data.data.filter((ele) => ele.status === 2);
-          const done = res.data.data.filter((ele) => ele.status === 3);
-
-          setTasks({
-            [TODO_TASK_ID]: todo,
-            [DOING_TASK_ID]: doing,
-            [DONE_TASK_ID]: done,
-          });
-
-          setLoading(false);
-        }, 3000);
-      } catch (error) {
-        setLoading(false);
-        setTasks({});
-      }
+      loadCurrentBoardTasks();
     }
   }, [selectedBoardId]);
 
@@ -137,6 +155,9 @@ export function TaskManagerProvider({ children }) {
         showAddTaskModal,
         addTask,
         deleteTask,
+        showEditTaskModal,
+        setShowEditTaskModal,
+        editTask,
       }}
     >
       {children}

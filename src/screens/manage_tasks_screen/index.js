@@ -10,6 +10,7 @@ import TodoTasks from "./components/todoTasks";
 import DoingTasks from "./components/doingTasks";
 import DoneTasks from "./components/doneTasks";
 import AddTaskModal from "./components/addTaskModal";
+import EditTaskModal from "./components/editTaskModal";
 
 export default function ManageTasksScreen() {
   const { isLoggedIn, loading: authLoading } = useAuth();
@@ -56,6 +57,8 @@ export default function ManageTasksScreen() {
       )}
       {/* Add Modal Component */}
       <AddTaskModal />
+      {/* Edit Modal Component */}
+      <EditTaskModal />
     </div>
   );
 }

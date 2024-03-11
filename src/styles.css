@@ -309,3 +309,9 @@ select {
     align-items: self-end;
     justify-content: space-between;
 }
+
+
+.iconContainerForTaskcard {
+    display: flex;
+    gap: 12px;
+}

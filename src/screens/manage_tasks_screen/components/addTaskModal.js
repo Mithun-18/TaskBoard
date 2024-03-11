@@ -34,10 +34,7 @@ export default function AddTaskModal() {
       taskStatus,
     };
 
-    addTask(data, () => {
-      taskNameRef.current.value = "";
-      descrptionRef.current.value = "";
-    });
+    addTask(data);
   }
 
   return (
@@ -45,6 +42,8 @@ export default function AddTaskModal() {
       title={"Add Task"}
       isOpen={showAddTaskModal}
       onClose={() => {
+        taskNameRef.current.value = "";
+        descrptionRef.current.value = ""; 
         setShowAddTaskModal(null);
       }}
     >
