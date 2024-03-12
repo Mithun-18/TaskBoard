@@ -5,12 +5,12 @@ import Loader from "../../component/core/loader";
 import { LOGIN_ROUTE } from "../../constants";
 import useAuth from "../../providers/auth_provider";
 import useTaskManager from "../../providers/task_manager_provider";
-import TaskBoardHeader from "./components/taskBoardHeader";
-import TodoTasks from "./components/todoTasks";
+import AddTaskModal from "./components/addTaskModal";
 import DoingTasks from "./components/doingTasks";
 import DoneTasks from "./components/doneTasks";
-import AddTaskModal from "./components/addTaskModal";
 import EditTaskModal from "./components/editTaskModal";
+import TaskBoardHeader from "./components/taskBoardHeader";
+import TodoTasks from "./components/todoTasks";
 
 export default function ManageTasksScreen() {
   const { isLoggedIn, loading: authLoading } = useAuth();
@@ -26,7 +26,7 @@ export default function ManageTasksScreen() {
   }, [authLoading]);
 
   useEffect(() => {
-    if (!authLoading &&  isLoggedIn()) {
+    if (!authLoading && isLoggedIn()) {
       loadBoards();
     }
   }, [authLoading]);
@@ -48,10 +48,9 @@ export default function ManageTasksScreen() {
     );
   }
 
-
   return (
     <div>
-      {(authLoading || taskManagerLoading) ? (
+      {(authLoading || taskManagerLoading) && taskBoards.length == 0 ? (
         <Loader />
       ) : (
         <>{taskBoards.length ? renderContent() : <EmptyState />}</>

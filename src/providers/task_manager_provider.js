@@ -51,7 +51,9 @@ export function TaskManagerProvider({ children }) {
         boardName,
       });
 
-      setSelectedBoardId(res?.data?.data?.boardId || "");
+      if (taskBoards.length > 0) {
+        setSelectedBoardId(res?.data?.data?.boardId || "");
+      }
       setLoading(false);
       onSuccess?.();
     } catch (e) {

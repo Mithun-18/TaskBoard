@@ -23,7 +23,6 @@ export default function TaskBoardHeader() {
   });
 
   const selectBoard = taskBoards.find((ele) => ele.table_id == selectedBoardId);
-  console.log(selectBoard,'hello',taskBoards,'hey',selectedBoardId);
   return (
     <div className="task-board-header">
       <div className="task-board-button-left">
