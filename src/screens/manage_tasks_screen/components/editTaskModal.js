@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CustomModal } from "../../../component/core/custom_modal";
 import TextFeild from "../../../component/core/textFeild";
 import TaskStatusSelection from "./taskStatusSelection";
@@ -9,14 +9,15 @@ import { DOING_TASK_ID, DONE_TASK_ID, TODO_TASK_ID } from "../../../config";
 export default function EditTaskModal() {
   const { showEditTaskModal, setShowEditTaskModal, editTask } =
     useTaskManager();
+  const [editTaskStatus, setEditTaskStatus] = useState(null);
   const taskNameRef = useRef(0);
   const descrptionRef = useRef(0);
 
   useEffect(() => {
     if (showEditTaskModal) {
-      console.log("hey", taskNameRef.current, descrptionRef.current);
       taskNameRef.current.value = showEditTaskModal?.title || "";
       descrptionRef.current.value = showEditTaskModal?.desc_task || "";
+      setEditTaskStatus(showEditTaskModal?.taskStatus || TODO_TASK_ID);
     }
   }, [showEditTaskModal]);
 
@@ -24,11 +25,11 @@ export default function EditTaskModal() {
     let taskName = taskNameRef.current.value;
     let decription = descrptionRef.current.value;
     let taskStatus;
-    if (showEditTaskModal.taskStatus === TODO_TASK_ID) {
+    if (editTaskStatus === TODO_TASK_ID) {
       taskStatus = 1;
-    } else if (showEditTaskModal.taskStatus === DOING_TASK_ID) {
+    } else if (editTaskStatus === DOING_TASK_ID) {
       taskStatus = 2;
-    } else if (showEditTaskModal.taskStatus === DONE_TASK_ID) {
+    } else if (editTaskStatus === DONE_TASK_ID) {
       taskStatus = 3;
     }
     if (!taskName) {
@@ -63,10 +64,9 @@ export default function EditTaskModal() {
         <TextFeild placeHolder={"Task Name"} inputRef={taskNameRef} />
         <TextFeild placeHolder={"Decription"} inputRef={descrptionRef} />
         <TaskStatusSelection
-          seletedValue={showEditTaskModal?.taskStatus}
+          seletedValue={editTaskStatus}
           onChange={(value) => {
-            showEditTaskModal.taskStatus = value;
-            setShowEditTaskModal(showEditTaskModal);
+            setEditTaskStatus(value);
           }}
         />
         <Button bName={"Edit"} onClick={onEditTask} />

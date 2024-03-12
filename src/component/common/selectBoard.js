@@ -10,7 +10,7 @@ export default function Select({
     <>
       <select
         value={selectedValue}
-        className={className}
+        className={`${className} uppercase`}
         onChange={({ target: { value } }) => {
           onChange?.(value);
         }}

@@ -315,3 +315,11 @@ select {
     display: flex;
     gap: 12px;
 }
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}

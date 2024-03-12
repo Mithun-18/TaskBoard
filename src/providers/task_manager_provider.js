@@ -20,6 +20,12 @@ export function TaskManagerProvider({ children }) {
   const [showAddTaskModal, setShowAddTaskModal] = useState(null);
   const [showEditTaskModal, setShowEditTaskModal] = useState(null);
 
+  function clearStates() {
+    setTaskBoards([]);
+    setSelectedBoardId("");
+    setTasks({});
+  }
+
   async function loadBoards() {
     try {
       setLoading(true);
@@ -29,8 +35,9 @@ export function TaskManagerProvider({ children }) {
         if (!selectedBoardId) {
           setSelectedBoardId(res?.data?.data?.[0]?.table_id || "");
         }
+
         setLoading(false);
-      }, 3000);
+      }, 2000);
     } catch (error) {
       setLoading(false);
       setTaskBoards([]);
@@ -96,22 +103,23 @@ export function TaskManagerProvider({ children }) {
   async function loadCurrentBoardTasks() {
     try {
       setLoading(true);
+      setTimeout(async () => {
+        let res = await http.post(USER_TASKS_ENDPOINT, {
+          boardId: selectedBoardId,
+        });
 
-      let res = await http.post(USER_TASKS_ENDPOINT, {
-        boardId: selectedBoardId,
-      });
+        const todo = res.data.data.filter((ele) => ele.status === 1);
+        const doing = res.data.data.filter((ele) => ele.status === 2);
+        const done = res.data.data.filter((ele) => ele.status === 3);
 
-      const todo = res.data.data.filter((ele) => ele.status === 1);
-      const doing = res.data.data.filter((ele) => ele.status === 2);
-      const done = res.data.data.filter((ele) => ele.status === 3);
+        setTasks({
+          [TODO_TASK_ID]: todo,
+          [DOING_TASK_ID]: doing,
+          [DONE_TASK_ID]: done,
+        });
 
-      setTasks({
-        [TODO_TASK_ID]: todo,
-        [DOING_TASK_ID]: doing,
-        [DONE_TASK_ID]: done,
-      });
-
-      setLoading(false);
+        setLoading(false);
+      }, 500);
     } catch (error) {
       setLoading(false);
       setTasks({});
@@ -158,6 +166,7 @@ export function TaskManagerProvider({ children }) {
         showEditTaskModal,
         setShowEditTaskModal,
         editTask,
+        clearTaskManagerStates: clearStates,
       }}
     >
       {children}

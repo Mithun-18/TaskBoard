@@ -14,7 +14,7 @@ export default function TaskCard({
   return (
     <div className="taskCard" style={{ borderLeft: borderColor }}>
       <div className="taskCardHeader">
-        <span>{heading}</span>
+        <span className="capitalize">{heading}</span>
         <div className="iconContainerForTaskcard">
           <MdOutlineDeleteForever
             size={24}
@@ -30,7 +30,7 @@ export default function TaskCard({
       </div>
       <div className="horizontal-line"></div>
       <div className="taskCardContent">
-        <span>{description}</span>
+        <span className="capitalize">{description}</span>
       </div>
     </div>
   );

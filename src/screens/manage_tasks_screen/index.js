@@ -26,7 +26,7 @@ export default function ManageTasksScreen() {
   }, [authLoading]);
 
   useEffect(() => {
-    if (!authLoading) {
+    if (!authLoading &&  isLoggedIn()) {
       loadBoards();
     }
   }, [authLoading]);
@@ -48,9 +48,10 @@ export default function ManageTasksScreen() {
     );
   }
 
+
   return (
     <div>
-      {(authLoading || taskManagerLoading) && taskBoards.length === 0 ? (
+      {(authLoading || taskManagerLoading) ? (
         <Loader />
       ) : (
         <>{taskBoards.length ? renderContent() : <EmptyState />}</>
