@@ -121,7 +121,7 @@
     align-items: center;
 }
 
-.logOutContainer {
+.handleClickNavigateContainer {
     display: flex;
     justify-content: flex-end;
     height: 10vh;

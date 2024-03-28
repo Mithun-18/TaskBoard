@@ -1,22 +1,22 @@
-import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { HOME_ROUTE, SIGNUP_ROUTE } from "../../constants";
-import useAuth from "../../providers/auth_provider";
+import { useRef } from "react";
 import LoginSingupComponent from "../component/login_signup_component";
+import { useNavigate } from "react-router-dom";
+import { HOME_ROUTE, LOGIN_ROUTE } from "../../constants";
+import useAuth from "../../providers/auth_provider";
 import HandleClickNavigate from "../../component/core/HandleClickNavigate";
 
-export default function LoginScreen() {
+export default function SignUp() {
   const userNameRef = useRef(0);
   const passwordRef = useRef(0);
   const navigate = useNavigate();
-  const { logIn } = useAuth();
+  const { signUp } = useAuth();
 
   function onSuccess() {
-    alert("Logged in successfully!");
+    alert("Signed up successfully !");
     navigate(HOME_ROUTE);
   }
 
-  function onLogin() {
+  function onSignUp() {
     let userName = userNameRef.current.value;
     let password = passwordRef.current.value;
 
@@ -28,30 +28,28 @@ export default function LoginScreen() {
       passwordRef.current.focus();
       return;
     }
-
     password = btoa(password);
-    logIn(userName, password, onSuccess);
+    signUp(userName, password, onSuccess);
   }
 
-  function navigateSignUp(onSuccess) {
+  function navigateLogin(onSuccess) {
     onSuccess();
   }
-
   return (
     <div>
       <div className="handleClickNavigateContainer ">
         <HandleClickNavigate
-          onHandleClickNavigate={navigateSignUp}
-          path={SIGNUP_ROUTE}
-          bName={"SIGN UP"}
+          onHandleClickNavigate={navigateLogin}
+          path={LOGIN_ROUTE}
+          bName={"LOGIN"}
         />
       </div>
       <LoginSingupComponent
-        heading={"Login"}
+        heading={"SignUp"}
         userNameRef={userNameRef}
         passwordRef={passwordRef}
-        bName={"Login"}
-        onHandleClick={onLogin}
+        bName={"SignUp"}
+        onHandleClick={onSignUp}
       />
     </div>
   );

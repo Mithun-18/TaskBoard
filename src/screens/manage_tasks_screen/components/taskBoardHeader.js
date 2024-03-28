@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Select from "../../../component/common/selectBoard.js";
 import useTaskManager from "../../../providers/task_manager_provider.js";
-import { CREATE_BOARD_ROUTE } from "../../../constants.js";
+import { CREATE_BOARD_ROUTE, LOGIN_ROUTE } from "../../../constants.js";
 import { TODO_TASK_ID } from "../../../config.js";
-import LogOut from "../../../component/core/logout.js";
+import HandleClickNavigate from "../../../component/core/HandleClickNavigate.js";
+import useAuth from "../../../providers/auth_provider.js";
 
 export default function TaskBoardHeader() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function TaskBoardHeader() {
     setSelectedBoardId,
     setShowAddTaskModal,
   } = useTaskManager();
+  const { logout } = useAuth();
 
   function onBoardChange(boardId) {
     setSelectedBoardId(boardId);
@@ -47,7 +49,11 @@ export default function TaskBoardHeader() {
           onChange={onBoardChange}
           selectedValue={selectedBoardId}
         />
-        <LogOut />
+        <HandleClickNavigate
+          onHandleClickNavigate={logout}
+          path={LOGIN_ROUTE}
+          bName={"LOGOUT"}
+        />
       </div>
     </div>
   );

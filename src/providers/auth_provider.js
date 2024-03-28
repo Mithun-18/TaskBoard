@@ -2,7 +2,10 @@ import Cookies from "js-cookie";
 import { createContext, useContext, useEffect, useState } from "react";
 import { USER_ID_COOKIE_KEY, USER_NAME_COOKIE_KEY } from "../constants";
 import http from "../services/http";
-import { USER_LOGIN_ENDPOINT } from "../services/constants";
+import {
+  USER_LOGIN_ENDPOINT,
+  USER_SIGNUP_ENDPOINT,
+} from "../services/constants";
 
 const AuthContext = createContext();
 
@@ -36,6 +39,26 @@ export function AuthProvider({ children }) {
     }
 
     setLoading(false);
+  }
+
+  function signUp(userName, password, onSuccess) {
+    http
+      .post(USER_SIGNUP_ENDPOINT, {
+        userName,
+        password,
+      })
+      .then((result) => {
+        const { data } = result;
+        let user = data?.data?.username || "";
+        if (user !== "") {
+          logIn(userName, password, onSuccess);
+        } else {
+          alert(`"${userName}" already exists\n try different user name !`);
+        }
+      })
+      .catch((error) => {
+        alert(error?.response?.data?.data || "Something went wrong!");
+      });
   }
 
   function logIn(userName, password, onSuccess) {
@@ -75,7 +98,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, logout, loading, setUser, logIn }}
+      value={{ isLoggedIn, logout, loading, setUser, logIn, signUp }}
     >
       {children}
     </AuthContext.Provider>
