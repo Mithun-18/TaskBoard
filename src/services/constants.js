@@ -6,3 +6,4 @@ export const USER_CREATEBOARD_ENDPOINT = "/tm/create-board";
 export const USER_ADDTASK_ENDPOINT = "/tm/add-task";
 export const USER_DELETETASK_ENDPOINT = "/tm/delete-task";
 export const USER_EDITTASK_ENDPOINT = "/tm/edit-task";
+export const USER_DELETEBOARD_ENDPOINT="/tm/delete-board";

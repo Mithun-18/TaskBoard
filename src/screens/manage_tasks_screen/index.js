@@ -11,6 +11,8 @@ import DoneTasks from "./components/doneTasks";
 import EditTaskModal from "./components/editTaskModal";
 import TaskBoardHeader from "./components/taskBoardHeader";
 import TodoTasks from "./components/todoTasks";
+import { CustomModal } from "../../component/core/custom_modal";
+import DeleteBoardModal from "./components/deleteBoardModal";
 
 export default function ManageTasksScreen() {
   const { isLoggedIn, loading: authLoading } = useAuth();
@@ -59,6 +61,8 @@ export default function ManageTasksScreen() {
       <AddTaskModal />
       {/* Edit Modal Component */}
       <EditTaskModal />
+      {/* Delete Modal Component */}
+      <DeleteBoardModal />
     </div>
   );
 }

@@ -11,13 +11,15 @@ export default function HandleClickNavigate({
 
   function onSuccess() {
     clearTaskManagerStates?.();
-    navigate(path);
+    if (path) {
+      navigate(path);
+    }
   }
   return (
     <button
       className="task-board-button"
       onClick={() => {
-        onHandleClickNavigate(onSuccess);
+        onHandleClickNavigate?.(onSuccess);
       }}
     >
       {bName}
