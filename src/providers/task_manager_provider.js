@@ -4,6 +4,7 @@ import {
   USER_ADDTASK_ENDPOINT,
   USER_BOARDS_ENDPOINT,
   USER_CREATEBOARD_ENDPOINT,
+  USER_DELETEBOARD_ENDPOINT,
   USER_DELETETASK_ENDPOINT,
   USER_EDITTASK_ENDPOINT,
   USER_TASKS_ENDPOINT,
@@ -19,6 +20,7 @@ export function TaskManagerProvider({ children }) {
   const [tasks, setTasks] = useState({});
   const [showAddTaskModal, setShowAddTaskModal] = useState(null);
   const [showEditTaskModal, setShowEditTaskModal] = useState(null);
+  const [showDeleteBoardModal, setShowDeleteBoardModal] = useState(false);
 
   function clearStates() {
     setTaskBoards([]);
@@ -150,7 +152,24 @@ export function TaskManagerProvider({ children }) {
       setLoading(false);
     }
   }
+/****************pending*************************/ 
+  async function deleteBoard() {
+    try {
+      setLoading(true);
+      await http.post(USER_DELETEBOARD_ENDPOINT, {
+        boardId: selectedBoardId,
+      });
+      setSelectedBoardId("");
+      setShowDeleteBoardModal(false);
 
+      await loadBoards();
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  }
+
+/*************************************/ 
   return (
     <TaskManagerContext.Provider
       value={{
@@ -169,6 +188,9 @@ export function TaskManagerProvider({ children }) {
         setShowEditTaskModal,
         editTask,
         clearTaskManagerStates: clearStates,
+        showDeleteBoardModal,
+        setShowDeleteBoardModal,
+        deleteBoard,
       }}
     >
       {children}
