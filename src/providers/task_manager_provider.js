@@ -37,7 +37,6 @@ export function TaskManagerProvider({ children }) {
         if (!selectedBoardId) {
           setSelectedBoardId(res?.data?.data?.[0]?.table_id || "");
         }
-
         setLoading(false);
       }, 2000);
     } catch (error) {
@@ -152,24 +151,40 @@ export function TaskManagerProvider({ children }) {
       setLoading(false);
     }
   }
-/****************pending*************************/ 
+
   async function deleteBoard() {
     try {
       setLoading(true);
-      await http.post(USER_DELETEBOARD_ENDPOINT, {
-        boardId: selectedBoardId,
-      });
+      if (selectedBoardId) {
+        await http.post(USER_DELETEBOARD_ENDPOINT, {
+          boardId: selectedBoardId,
+        });
+      }
+      setTaskBoards(
+        taskBoards.filter((board) => board.table_id !== selectedBoardId)
+      );
       setSelectedBoardId("");
       setShowDeleteBoardModal(false);
-
       await loadBoards();
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     } catch (error) {
       setLoading(false);
     }
   }
 
-/*************************************/ 
+  useEffect(() => {
+    console.log("task", taskBoards, taskBoards.length, selectedBoardId);
+  }, [taskBoards, selectedBoardId]);
+
+  useEffect(() => {
+    if (taskBoards.length > 0) {
+      setSelectedBoardId(taskBoards[0].table_id);
+      console.log("setting board");
+    }
+  }, [!selectedBoardId]);
+
   return (
     <TaskManagerContext.Provider
       value={{
