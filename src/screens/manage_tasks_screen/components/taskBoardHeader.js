@@ -6,7 +6,6 @@ import { TODO_TASK_ID } from "../../../config.js";
 import HandleClickNavigate from "../../../component/core/HandleClickNavigate.js";
 import useAuth from "../../../providers/auth_provider.js";
 import MoreMenu from "./moreMenu.js";
-import { useState } from "react";
 
 export default function TaskBoardHeader() {
   const navigate = useNavigate();
@@ -15,7 +14,6 @@ export default function TaskBoardHeader() {
     selectedBoardId,
     setSelectedBoardId,
     setShowAddTaskModal,
-    showDeleteBoardModal,
     setShowDeleteBoardModal,
   } = useTaskManager();
 

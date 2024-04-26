@@ -26,7 +26,7 @@ export default function NewTaskBoard() {
   return (
     <div className="newTaskBoard">
       <span className="heading">Create New Task Board</span>
-      <TextFeild placeHolder={"Board Name"} inputRef={boardNameRef} />
+      <TextFeild placeHolder={"Board Name"} inputRef={boardNameRef} focus={true}/>
       <Button bName={"Create"} onClick={onCreate} />
     </div>
   );

@@ -50,7 +50,11 @@ export default function AddTaskModal() {
       }}
     >
       <div className="textFeildContainer">
-        <TextFeild placeHolder={"Task Name"} inputRef={taskNameRef} />
+        <TextFeild
+          placeHolder={"Task Name"}
+          inputRef={taskNameRef}
+          focus={true}
+        />
         <TextFeild placeHolder={"Decription"} inputRef={descrptionRef} />
         <TaskStatusSelection
           seletedValue={showAddTaskModal}

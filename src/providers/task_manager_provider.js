@@ -152,7 +152,7 @@ export function TaskManagerProvider({ children }) {
     }
   }
 
-  async function deleteBoard() {
+  async function deleteBoard(onSuccess) {
     try {
       setLoading(true);
       if (selectedBoardId) {
@@ -160,30 +160,23 @@ export function TaskManagerProvider({ children }) {
           boardId: selectedBoardId,
         });
       }
-      setTaskBoards(
-        taskBoards.filter((board) => board.table_id !== selectedBoardId)
-      );
-      setSelectedBoardId("");
+      setTaskBoards([]);
       setShowDeleteBoardModal(false);
       await loadBoards();
       setTimeout(() => {
         setLoading(false);
       }, 2000);
+      setSelectedBoardId("");
     } catch (error) {
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    console.log("task", taskBoards, taskBoards.length, selectedBoardId);
-  }, [taskBoards, selectedBoardId]);
-
-  useEffect(() => {
-    if (taskBoards.length > 0) {
+    if (taskBoards.length > 0 && selectedBoardId === "") {
       setSelectedBoardId(taskBoards[0].table_id);
-      console.log("setting board");
     }
-  }, [!selectedBoardId]);
+  }, [selectedBoardId, taskBoards]);
 
   return (
     <TaskManagerContext.Provider

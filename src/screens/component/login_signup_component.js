@@ -21,7 +21,7 @@ export default function LoginSingupComponent({
         </div>
         <div className="loginScreen">
           <span className="heading">{heading}</span>
-          <TextFeild placeHolder={"User Name"} inputRef={userNameRef} />
+          <TextFeild placeHolder={"User Name"} inputRef={userNameRef} focus={true}/>
           <TextFeild
             placeHolder={"Password"}
             inputRef={passwordRef}

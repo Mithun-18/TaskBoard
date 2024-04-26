@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CustomModal } from "../../../component/core/custom_modal";
 import useTaskManager from "../../../providers/task_manager_provider";
 
@@ -24,7 +23,10 @@ export default function DeleteBoardModal() {
       width={"fit-content"}
     >
       <div className="deleteBoardModal">
-        <p>Are you sure you want to delete `{boardName}` board ?</p>
+        <p className="capitalize ">
+          Are you sure you want to delete{" "}
+          <span className="uppercase">`{boardName}`</span> board ?
+        </p>
         <button
           onClick={() => {
             deleteBoard();
